@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>thinkigo</title>
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,300,600,700,800" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+/* @charset "UTF-8"; */
+@font-face {
+	font-family: 'Berserker-Regular';
+  	src: url("../css/Berserker-Regular.woff") format("woff");
+  	font-weight: normal;
+  	font-style: normal; 
+}
+* {
+	font-family: 'Berserker-Regular', sans-serif;
+}
+html, body {
+  	margin: 0;
+	  height: 100%;
+	  line-height: 4em;
+  	overflow: hidden;
+  	background: #59adeb;
+  	background: linear-gradient(135deg, #59adeb 0%, #42c2b5 52%, #34ce93 100%);
+  	background-size: 100% 100%;
+}
+.section {
+	width: 100%;
+	height: 100%;
+}
+/* MainContainer Styles*/
+.mainContainer {
+	display: inline-block;
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 1300px;
+	height: 732px;
+	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  				0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  				0 12.5px 10px rgba(0, 0, 0, 0.06),
+  				0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  				0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  				0 100px 80px rgba(0, 0, 0, 0.12);
+}
+div#multiColor {
+  	margin: 0 auto;
+  	text-align: center;
+}
+
+div.carAd {
+	height: 732px;
+  	display: inline-block;
+  	padding-top: 40px;
+  	text-align: center;
+  	color: #fff;
+  	font-size: 18px;
+}
+.adCar {
+  animation: drive 5s cubic-bezier(0.02, 0.01, 0.21, 1);
+}
+@keyframes drive {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  } to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.added-item {
+  animation: added-item-animation 2s cubic-bezier(.55,-0.04,.91,.94) forwards
+}
+@keyframes added-item-animation {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    } to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.removed-item {
+  animation: removed-item-animation 2s cubic-bezier(.55,-0.04,.91,.94) forwards
+}
+@keyframes removed-item-animation {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    } to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+#chevron {
+	position: absolute;
+	top: 20px;
+	text-align: center;
+	padding: 3px;
+	margin: 10px;
+	height: 60px;
+	width: 300px;
+}
+#chevron:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 51%;
+	background: #DC514E;
+	transform: skew(0deg, 6deg);
+	z-index: 11;
+}
+#chevron:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 50%;
+	background: #3498db;
+	transform: skew(0deg, 6deg);
+	z-index: 10;
+}
+#chevron h1 {
+	position: absolute;
+	top: 0px;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+	width: 100%;
+	z-index: 100;
+	margin-top: 24px;
+	letter-spacing: 3px;
+	animation: bounce 0.3s ease infinite alternate;
+}
+
+@keyframes bounce {
+  to {
+    text-shadow: 0 1px #bbb, 0 2px #bbb, 0 3px #bbb, 0 4px #bbb, 0 5px #bbb, 0 6px #bbb, 0 7px #bbb, 0 8px #bbb, 0 9px #bbb, 0 50px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+  }
+}
+/* MainContainer Styles*/
+
+.interaction {
+	display: inline-block;
+	height: 732px;
+}
+
+#canvas {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+/* Slider Interaction Styles*/
+.sliderNav {
+	width: 100%;
+	position: fixed;
+	top: 750px;
+}
+#fly-in {
+  width: 100vw;
+  font-weight: 700;
+  color: #eee;
+  font-size: 4em;
+  height: 20vh; 
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#fly-in span {
+  display: block;
+  font-size: .8em;
+  opacity: .8;
+  color: #111;
+}
+
+#fly-in div {
+  position: fixed;
+  opacity: 0;
+  bottom: 50px;
+  width: 80vw;
+  animation: switch 32s linear infinite;
+}
+
+#fly-in div:nth-child(2) { animation-delay: 4s}
+#fly-in div:nth-child(3) { animation-delay: 8s}
+#fly-in div:nth-child(4) { animation-delay: 12s}
+#fly-in div:nth-child(5) { animation-delay: 16s}
+#fly-in div:nth-child(6) { animation-delay: 20s}
+#fly-in div:nth-child(7) { animation-delay: 24s}
+#fly-in div:nth-child(8) { animation-delay: 28s}
+
+@keyframes switch {
+    0% { opacity: 0;filter: blur(20px); transform:scale(12)}
+    3% { opacity: 1;filter: blur(0); transform:scale(1)}
+    10% { opacity: 1;filter: blur(0); transform:scale(.9)}
+    13% { opacity: 0;filter: blur(10px); transform:scale(.1)}
+    80% { opacity: 0}
+    100% { opacity: 0}
+}
+ul.slider {
+	display: none;
+	width: 1300px;
+	list-style-type: none;
+	text-align: center;
+}
+ul.slider li {
+	display: inline-block;
+	width: 350px;
+	opacity: 0.6;
+}
+ul.slider li img {
+	position: relative;
+	z-index: 100;
+	top: 65px;
+	left: -50px;
+}
+ul.slider li img.animate {
+	animation: jackInTheBox 1s;
+}
+@keyframes jackInTheBox {
+  from {
+    opacity: 0;
+    transform: scale(0.1) rotate(30deg);
+    transform-origin: center bottom;
+  } 50% {
+    transform: rotate(-10deg);
+  } 70% {
+    transform: rotate(3deg);
+  } to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+ul.slider li.leftPos img, ul.slider li.rightPos img {
+	width: 400px;
+	top: 20px;
+}
+ul.slider li.mainPos {
+	opacity: 1;
+}
+ul.slider li.mainPos img {
+	top: 70px;
+	left: -100px;
+	animation: shake 0.5s infinite;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.mainPos .badge {
+	width: 160px;
+	animation: shake 0.5s infinite;
+}
+.leftPos .badge, .rightPos .badge {
+	width: 125px;
+}
+.badge {
+	position: relative;
+	top: -300px;
+	left: 0;
+	margin: 10px;
+	display: inline-block;
+}
+.badge .headTitle {
+	font-family: "Montserrat", sans-serif;
+	font-weight: bold;
+	font-size: 1.1em;
+	position: absolute;
+	top: -33px;
+	border-radius: 8px 8px 0 0;
+	text-align: center;
+	width: 100%;
+	padding: 15px 0;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.badge .subHead {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	position: absolute;
+	font-size: 1.1em;
+	width: 100%;
+	color: white;
+	top: 35%;
+	bottom: 65%;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.nissanLogo {
+	display: inline-block;
+	position: fixed;
+	top: 745px;
+	right: 0;
+	background: url('../img/logo.png') no-repeat top center;
+	background-size: 60% 60%;
+  	width: 378px;
+  	height: 300px;
+  	z-index: 100;
+}
+a.enjoy-css {
+	display: block;
+	margin-top: 190px;
+  	font: normal 70px/normal Helvetica, sans-serif;
+  	text-align: center;
+  	color: #ff0000;
+  	text-shadow: 0 1px 0 rgb(204,0,0) , 0 2px 0 rgb(201,0,0) , 0 3px 0 rgb(187,0,0) , 0 4px 0 rgb(185,0,0) , 0 5px 0 rgb(170,0,0) , 0 6px 1px rgba(0,0,0,0.0980392) , 0 0 5px rgba(0,0,0,0.0980392) , 0 1px 3px rgba(0,0,0,0.298039) , 0 3px 5px rgba(0,0,0,0.2) , 0 5px 10px rgba(0,0,0,0.247059) , 0 10px 10px rgba(0,0,0,0.2) , 0 20px 20px rgba(0,0,0,0.14902) ;
+  	animation: heartBeat 3s infinite;
+}
+
+#qrcode img {
+	margin: auto;
+}
+a.enjoy-css span {
+  	color: #ffffff;
+  	text-shadow: 0 1px 0 rgb(204,204,204) , 0 2px 0 rgb(201,201,201) , 0 3px 0 rgb(187,187,187) , 0 4px 0 rgb(185,185,185) , 0 5px 0 rgb(170,170,170) , 0 6px 1px rgba(0,0,0,0.0980392) , 0 0 5px rgba(0,0,0,0.0980392) , 0 1px 3px rgba(0,0,0,0.298039) , 0 3px 5px rgba(0,0,0,0.2) , 0 5px 10px rgba(0,0,0,0.247059) , 0 10px 10px rgba(0,0,0,0.2) , 0 20px 20px rgba(0,0,0,0.14902) ;
+}
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  } 30% {
+    transform: scale3d(1.25, 0.75, 1);
+  } 40% {
+    transform: scale3d(0.75, 1.25, 1);
+  } 50% {
+    transform: scale3d(1.15, 0.85, 1);
+  } 65% {
+    transform: scale3d(0.95, 1.05, 1);
+  } 75% {
+    transform: scale3d(1.05, 0.95, 1);
+  } to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  } 14% {
+    transform: scale(1.3);
+  } 28% {
+    transform: scale(1);
+  } 42% {
+    transform: scale(1.3);
+  } 70% {
+    transform: scale(1);
+  }
+}
+/* Slider Interaction Styles*/
+ 
+ </style>
+
+</head>
+<body>
+<div class="section">
+	<div class="mainContainer">
+		<div id="multiColor"></div>
+		<img id="imageViewer" src="" />
+		<div id="chevron">
+			<h1></h1>
+		</div>
+	</div>
+	<div class="interaction">
+		<canvas id="canvas"></canvas>
+		<div id="label-container"></div>
+	</div>
+	<div class="sliderNav">
+		<div id="fly-in" class="fly-in">
+			<div><span>iNTERACTIVE BILLBOARD</span>THINKIGO</div>
+			<div>INTERACT<span>BY GESTURES</span></div>
+			<div><span>BUILD YOUR</span>NISSAN</div>
+			<div><span>CUSTOMIZE YOUR</span>DREAM CAR</div>
+	    </div>
+		<ul class="slider">
+			<li class="leftPos">
+				<img src="" />
+				<div class="badge">
+				  	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" width="125px" height="134px" viewBox="0 0 216 232">
+						<path fill="#2B2B2B" d="M207,0C171.827,0.001,43.875,0.004,9.003,0c-5.619-0.001-9,3.514-9,9c0,28.23-0.006,151.375,0,169    c0.005,13.875,94.499,54,107.999,54S216,191.57,216,178V9C216,3.298,212.732,0,207,0z"/>
+					</svg>
+					<p class="headTitle"></p>
+		  			<p class="subHead"></p>
+				</div>
+			</li>
+			<li class="mainPos">
+				<img src="" />
+				<div class="badge">
+				  	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" width="160px" height="172px" viewBox="0 0 216 232">
+						<path fill="#2B2B2B" d="M207,0C171.827,0.001,43.875,0.004,9.003,0c-5.619-0.001-9,3.514-9,9c0,28.23-0.006,151.375,0,169    c0.005,13.875,94.499,54,107.999,54S216,191.57,216,178V9C216,3.298,212.732,0,207,0z"/>
+					</svg>
+					<p class="headTitle"></p>
+		  			<p class="subHead"></p>
+				</div>
+			</li>
+			<li class="rightPos">
+				<img src="" />
+				<div class="badge">
+				  	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" width="125px" height="134px" viewBox="0 0 216 232">
+						<path fill="#2B2B2B" d="M207,0C171.827,0.001,43.875,0.004,9.003,0c-5.619-0.001-9,3.514-9,9c0,28.23-0.006,151.375,0,169    c0.005,13.875,94.499,54,107.999,54S216,191.57,216,178V9C216,3.298,212.732,0,207,0z"/>
+					</svg>
+					<p class="headTitle"></p>
+		  			<p class="subHead"></p>
+				</div>
+			</li>
+		</ul>
+		<div class="nissanLogo">
+			<a class="enjoy-css">th<span>i</span>nk<span>i</span>go</a>
+		</div>
+	</div>
+</div>
+<!-- Welcome Modal Code Start -->
+<div class="ui modal welcome-modal">
+		<!-- <div class="header">
+		  Welcome
+		</div> -->
+		<div style="text-align: center;align-content: center"class="image content">
+		  <div class="description">
+			<div class="ui header welcome-message">Hey There!Thinkigo suggests this car for you! </div>
+			<img id="welcome-image" src="https://nissan.scene7.com/is/image//nissan/?layer=0&src=JUKE_724A_EXT_ALL_common_RHD_RL_KAD_006&layer=2&src=JUKE_724A_EXT_Std_common_GP01_KAD_006&layer=3&src=JUKE_724A_EXT_TIRE_WHEEL_17inch_ASR_006&layer=4&src=JUKE_724A_EXT_WINDSHIELD_RHD_GLASS_ASR_006&layer=5&src=JUKE_724A_EXT_ROOF_WO_SUNROOF_GP46_KAD_006&layer=6&src=JUKE_724A_EXT_HEADLAMP_HALOGEN_GP44_006&layer=7&src=JUKE_724A_EXT_FOG_LAMP_8892A_GP41_006&layer=8&src=JUKE_724A_EXT_FASCIA_FR_GRILLE_CNTR_WO_CAMERA_BV80A_GP37_006&layer=9&src=JUKE_724A_EXT_FASCIA_FR_EMBLEM_NISSAN_WO_CAMERA_SHORT_GP34_006&layer=10&src=JUKE_724A_EXT_FASCIA_FR_COVER_3YM0A_GP32_KAD_006&layer=11&src=JUKE_724A_EXT_plate_EU_JUKE_Group1_GP39_006&layer=12&src=JUKE_724A_EXT_TRUNK_DOOR_FINISHER_WO_CAMERA_GP53_KAD_006&layer=13&src=JUKE_724A_EXT_DOOR_RR_PRIVACY_GLASS_RHD_ASR_006&layer=14&src=JUKE_724A_EXT_DOOR_FR_MIRROR_RHD_WO_CAMERA_GP26_006&layer=15&src=JUKE_724A_EXT_DOOR_FR_MIRROR_COVER_RHD_W_TURN_SIGNAL_GP20_KAD_006&layer=16&src=JUKE_724A_EXT_DOOR_FR_EXT_HANDLE_WO_IKEY_GP10_KAD_006&layer=17&src=JUKE_724A_EXT_DOOR_FR_LH_EXT_HANDLE_ESCUT_WO_LOCK_GP06_KAD_006&layer=COMP&&wid=500&fmt=png-alpha&qlt=90&resMode=sharp2&op_usm=1.75,0.3,2,0">
+			<h2>JUKE</h2>
+			
+		  </div>
+		</div>
+</div>
+<!--Welcome Modal Code End -->
+<a style="display: none" href="#" id="speak" class="waves-effect waves-light btn">Speak</a>
+<!-- QR Code Modal Code Start -->
+<div style="text-align: center;align-content: center;align-items: center" class="ui modal qrcode-modal">
+		<div class="header">
+		  QR Code
+		</div>
+		<div class="image content">
+		  <div class="description">
+			<div class="ui header">Scan the below QR code to get details of your configured card. </div>
+			<div id="qrcode"></div>
+		  </div>
+		</div>
+		<h2 id="timer">Your Journey Ends in 120 Seconds</h2>
+</div>
+<!-- Modal Code End -->
+<script src="../davidshimjs-qrcodejs-04f46c6/qrcode.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+<script>
+
+/* Camera Gesture Control */
+
+const URL = "http://localhost:8080/js/";
+let i=1;
+let model, webcam, ctx, labelContainer, maxPredictions;
+
+async function cameraInit() {
+	const modelURL = URL + "model.json";
+	const metadataURL = URL + "metadata.json";
+
+	// load the model and metadata
+	// Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+	// Note: the pose library adds a tmPose object to your window (window.tmPose)
+	model = await tmPose.load(modelURL, metadataURL);
+	maxPredictions = model.getTotalClasses();
+
+	// Convenience function to setup a webcam
+	const size = 358, flip = true; // whether to flip the webcam
+	webcam = new tmPose.Webcam(size, size	, flip); // width, height, flip
+	await webcam.setup(); // request access to the webcam
+	await webcam.play();
+	window.requestAnimationFrame(loop);
+
+	// append/get elements to the DOM
+	const canvas = document.getElementById("canvas");
+	canvas.width = size; canvas.height = size;
+	ctx = canvas.getContext("2d");
+	labelContainer = document.getElementById("label-container");
+	for (let i = 0; i < maxPredictions; i++) { // and class labels
+		labelContainer.appendChild(document.createElement("div"));
+	}
+}
+
+async function loop(timestamp) {
+	webcam.update(); // update the webcam frame
+	await predict();
+	window.requestAnimationFrame(loop);
+}
+
+async function predict() {
+	// Prediction #1: run input through posenet
+	// estimatePose can take in an image, video or canvas html element
+	const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
+	// Prediction 2: run input through teachable machine classification model
+	const prediction = await model.predict(posenetOutput);
+
+	for (let i = 0; i < maxPredictions; i++) {
+		const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+		var action = [];
+		//labelContainer.childNodes[i].innerHTML = classPrediction;
+		key = prediction[i].className;
+		gesture[key] = gesture[key] + Math.round(prediction[i].probability.toFixed(2));
+	}
+	// finally draw the poses
+	drawPose(pose);
+}
+
+function drawPose(pose) {
+	if (webcam.canvas) {
+		ctx.drawImage(webcam.canvas, 0, 0);
+	}
+    
+	if(i==1) {
+            var dataURL = canvas.toDataURL('image/png');
+        	i++;
+        	$.post( "/",{myData:dataURL}).done(function( data ) {
+    			alert( "Data Loaded" ,data);
+  			});
+        }
+}
+/* Camera Gesture Control */
+
+function init () {
+ 	setting = {
+  		imgWidth : 1300,
+  		thumbnail : 500,
+  		thumbFrame : "006",
+  		rotataFrame : "001",
+  		colorFrame : "031",
+  		adDelay : 10000,
+  		adSelCar : 0,
+  		slider : 0,
+  		selModel : '',
+  		selColor : '',
+  		scene : "adMotion",
+  		timer360 : 80,
+  		gestureTimer  : 3000,
+  		badgeColor : ["#EEEEEE", "#DC514E", "#2ecc71", "#95a5a6", "#f1c40f", "#3498db"]
+  	};
+
+  	gesture = {
+  		Select : 0,
+  		Cancel : 0,
+  		Right : 0,
+  		Left : 0,
+  		Default : 10
+  	};
+
+  	$.ajax({
+      	async: false,
+      	type: "GET",
+		url: "http://localhost:8080/js/carModel.json",
+      	dataType: "json",
+      	success : function(data) {
+			setting.model = data;
+        }
+    });
+  	$(".leftPos").click(function () {
+  		modelSlider($(".leftPos > img").data('myval'));
+  		if (setting.scene == 'modelSelection') {
+  			clearInterval(animate360);
+			carAnimate($(".mainPos > img").data('myval'));
+		}
+		else if (setting.scene == 'colorSelection')
+			colorAnimate($(".mainPos > img").data('myval'));
+  	});
+
+  	$(".rightPos").click(function () {
+  		modelSlider($(".rightPos > img").data('myval'));
+  		if (setting.scene == 'modelSelection') {
+  			clearInterval(animate360);
+			carAnimate($(".mainPos > img").data('myval'));
+		}
+		else if (setting.scene == 'colorSelection')
+			colorAnimate($(".mainPos > img").data('myval'));
+  	});
+  	$(".mainPos").click(function () {
+  		if (setting.scene == "modelSelection") { 
+  			setting.selModel = $(".mainPos > img").data('myval');
+			  colorAnimate($(".mainPos > img").data('myval'));
+  		} else if (setting.scene == "colorSelection") {
+
+			setting.selColor = $(".mainPos > img").data('myval');
+
+			// @@@@@@@@@@@@
+			var data =  setting.model,imagePath, selCar = setting.selModel, image, imgCount = data[selCar].colors.length, 
+		start = 113, end = 111, cropArea = (setting.imgWidth-(start+end));
+			$.each(data[selCar].colors, function (index, value) {
+				if(index ==setting.selColor ) {
+					var key = Object.keys(value)[0], image = value[key];
+	  imagePath = image.replace(/{{frame}}/g, "031").replace(/{{width}}/g, setting.imgWidth);
+				}
+ 
+    });
+			// @@@@@@@@@@
+			
+			var time=120;
+			var imgurl = imagePath;
+			console.log(imagePath);
+			var qrcode = new QRCode(document.getElementById("qrcode"), {
+    			text: "https://pooja201095.github.io/CustomerInfoForm/form.html?imgUrl="+ imagePath
+			});
+			var pageReloadTimer = setInterval(function(){document.getElementById('timer').textContent = "Your Journey Ends in "+ time-- + " Seconds"},1000)
+			if(time<=0) {
+				clearInterval(pageReloadTimer);
+			}
+			$('.ui.modal.qrcode-modal').modal('show');
+			setTimeout(function(){location.reload()}, time*1000);
+			clearTimeout();
+  		}
+  		modelSlider(setting.slider);
+	  });
+
+ 	adInit();
+ 	cameraInit();
+	gestureAction();
+	// modelSlider(0);
+	// carAnimate(0);
+}
+
+function gestureAction () {
+	setInterval (function () {
+		var max = Math.max.apply(null,Object.values(gesture));
+		$.each(gesture, function (action, data) {
+			if (max == data) {
+				console.log(action, setting.scene, setting.selModel, setting.selColor);
+				switch (action) {
+					case "Left":
+						if (setting.scene != 'adMotion' && setting.scene != 'persalization') {
+							$(".leftPos > img").trigger('click');
+						}
+						setTimeout(()=>{console.log("timeout after left")},1000)
+						break;
+					
+					case "Right":
+						if (setting.scene != 'adMotion' && setting.scene != 'persalization') {
+							$(".rightPos > img").trigger('click');
+						}
+						setTimeout(()=>{console.log("timeout after right")},1000)
+						break;
+					
+					case "Select":
+						if (setting.scene == 'adMotion') {
+							$('.ui.modal.welcome-modal').modal('show');
+							let persondata;
+							$.getJSON( "../data.json", function( data ) {
+								if(data.length == 0) {
+									data[0].faceAttributes=  {"smile": 1.0, "age": 30.0, "gender": "male"}
+								}
+								personalization(data[0].faceAttributes);
+							});
+						} else if (setting.scene == 'persalization') {
+							modelSlider(setting.slider);
+							carAnimate($(".mainPos > img").data('myval'));
+						} else {
+							$(".mainPos > img").trigger('click');
+						}
+						setTimeout(()=>{console.log("timeout after selection")},2000)
+						break;
+					
+					case "Cancel":
+						break;
+					
+					case "Default":
+						break;
+					default:
+						//console.log("Default NoAction");
+				}
+			}
+		});
+		gesture = {
+  			Select : 0,
+  			Cancel : 0,
+  			Right : 0,
+  			Left : 0,
+  			Default : 10
+  		};
+	}, setting.gestureTimer);
+}
+
+function personalization(data) {
+	setting.scene = 'persalization';
+	let age = data.age,
+		gender = data.gender;
+		// $('.welcome-message').text("Hey There!Thinkigo suggests this car for you!");
+		// 	$('#welcome-image').attr("src","https://nissan.scene7.com/is/image//nissan/?layer=0&src=JUKE_724A_EXT_ALL_common_RHD_RL_KAD_006&layer=2&src=JUKE_724A_EXT_Std_common_GP01_KAD_006&layer=3&src=JUKE_724A_EXT_TIRE_WHEEL_17inch_ASR_006&layer=4&src=JUKE_724A_EXT_WINDSHIELD_RHD_GLASS_ASR_006&layer=5&src=JUKE_724A_EXT_ROOF_WO_SUNROOF_GP46_KAD_006&layer=6&src=JUKE_724A_EXT_HEADLAMP_HALOGEN_GP44_006&layer=7&src=JUKE_724A_EXT_FOG_LAMP_8892A_GP41_006&layer=8&src=JUKE_724A_EXT_FASCIA_FR_GRILLE_CNTR_WO_CAMERA_BV80A_GP37_006&layer=9&src=JUKE_724A_EXT_FASCIA_FR_EMBLEM_NISSAN_WO_CAMERA_SHORT_GP34_006&layer=10&src=JUKE_724A_EXT_FASCIA_FR_COVER_3YM0A_GP32_KAD_006&layer=11&src=JUKE_724A_EXT_plate_EU_JUKE_Group1_GP39_006&layer=12&src=JUKE_724A_EXT_TRUNK_DOOR_FINISHER_WO_CAMERA_GP53_KAD_006&layer=13&src=JUKE_724A_EXT_DOOR_RR_PRIVACY_GLASS_RHD_ASR_006&layer=14&src=JUKE_724A_EXT_DOOR_FR_MIRROR_RHD_WO_CAMERA_GP26_006&layer=15&src=JUKE_724A_EXT_DOOR_FR_MIRROR_COVER_RHD_W_TURN_SIGNAL_GP20_KAD_006&layer=16&src=JUKE_724A_EXT_DOOR_FR_EXT_HANDLE_WO_IKEY_GP10_KAD_006&layer=17&src=JUKE_724A_EXT_DOOR_FR_LH_EXT_HANDLE_ESCUT_WO_LOCK_GP06_KAD_006&layer=COMP&&wid=500&fmt=png-alpha&qlt=90&resMode=sharp2&op_usm=1.75,0.3,2,0");
+		if(gender == "female") {
+			$('.welcome-message').text("Hey Beautiful..! Thinkigo suggests this car for you!");
+			$('#welcome-image').attr("src","https://nissan.scene7.com/is/image//nissan/?layer=0&src=370zc_common_all_A54_006&layer=2&src=MY16_DOOR_HATCH_RR_WIPER_006&layer=3&src=MY16_WHEELS_19in_all_006&layer=COMP&&wid=500&fmt=png-alpha&qlt=90");
+		} else if(gender == "male"){
+			$('.welcome-message').text("Hey Handsome..! Thinkigo suggests this car for you!");
+			$('#welcome-image').attr("src","https://nissan.scene7.com/is/image//nissan/?layer=0&src=JUKE_724A_EXT_ALL_common_RHD_RL_KAD_006&layer=2&src=JUKE_724A_EXT_Std_common_GP01_KAD_006&layer=3&src=JUKE_724A_EXT_TIRE_WHEEL_17inch_ASR_006&layer=4&src=JUKE_724A_EXT_WINDSHIELD_RHD_GLASS_ASR_006&layer=5&src=JUKE_724A_EXT_ROOF_WO_SUNROOF_GP46_KAD_006&layer=6&src=JUKE_724A_EXT_HEADLAMP_HALOGEN_GP44_006&layer=7&src=JUKE_724A_EXT_FOG_LAMP_8892A_GP41_006&layer=8&src=JUKE_724A_EXT_FASCIA_FR_GRILLE_CNTR_WO_CAMERA_BV80A_GP37_006&layer=9&src=JUKE_724A_EXT_FASCIA_FR_EMBLEM_NISSAN_WO_CAMERA_SHORT_GP34_006&layer=10&src=JUKE_724A_EXT_FASCIA_FR_COVER_3YM0A_GP32_KAD_006&layer=11&src=JUKE_724A_EXT_plate_EU_JUKE_Group1_GP39_006&layer=12&src=JUKE_724A_EXT_TRUNK_DOOR_FINISHER_WO_CAMERA_GP53_KAD_006&layer=13&src=JUKE_724A_EXT_DOOR_RR_PRIVACY_GLASS_RHD_ASR_006&layer=14&src=JUKE_724A_EXT_DOOR_FR_MIRROR_RHD_WO_CAMERA_GP26_006&layer=15&src=JUKE_724A_EXT_DOOR_FR_MIRROR_COVER_RHD_W_TURN_SIGNAL_GP20_KAD_006&layer=16&src=JUKE_724A_EXT_DOOR_FR_EXT_HANDLE_WO_IKEY_GP10_KAD_006&layer=17&src=JUKE_724A_EXT_DOOR_FR_LH_EXT_HANDLE_ESCUT_WO_LOCK_GP06_KAD_006&layer=COMP&&wid=500&fmt=png-alpha&qlt=90&resMode=sharp2&op_usm=1.75,0.3,2,0");
+		} 
+// ######## Speech Functionality
+	  if ('speechSynthesis' in window) {
+      $('#speak').click(function(){
+        var text = $(".welcome-message").text();
+        var msg = new SpeechSynthesisUtterance();
+        var voices = window.speechSynthesis.getVoices();
+        msg.voice = voices[0];
+        msg.rate = 0.90;
+        msg.pitch = 1;
+        msg.text = text;
+  
+        msg.onend = function(e) {
+          console.log('Finished in ' + event.elapsedTime + ' seconds.');
+        };
+        speechSynthesis.speak(msg);
+      })
+	}
+$( "#speak" ).trigger("click");
+
+// ######## Speech Functionality End
+
+}
+
+function adInit () {
+	var data = setting.model, adSelCar = setting.adSelCar, image = imgSrc(adSelCar, data[adSelCar].adFrame, setting.imgWidth);
+
+	$("#chevron").removeClass("removed-item").addClass("added-item");
+	$("#imageViewer").attr("src", image).addClass("adCar").show();
+	$("#chevron h1").text(data[adSelCar].model);
+
+	if (adSelCar+1 == data.length)
+		setting.adSelCar = 0;
+	else
+		setting.adSelCar++;
+
+	adDelay = setTimeout(function () {
+		adInit(data);
+	}, setting.adDelay);
+
+	adAnimate = setTimeout(function () {
+		$("#imageViewer").fadeOut(1500, function(){ $(this).removeClass("adCar");});
+		$("#chevron").removeClass("added-item").addClass("removed-item");
+	}, setting.adDelay - 2500);
+}
+
+function carAnimate (selCar) {
+  	var data = setting.model, loop = 0, len = data[selCar].imageArray.length;
+
+  	// clearTimeout(adDelay);
+  	// clearTimeout(adAnimate);
+
+  	$("#chevron").removeClass("removed-item").addClass("added-item").show();
+	$("#chevron h1").text(data[selCar].model);
+
+  	animate360 = setInterval(function(){
+  		image = imgSrc(selCar, data[selCar].imageArray[loop], setting.imgWidth);
+    	$("#imageViewer").show().removeClass("adCar").attr("src", image);
+    
+    	if (loop+1 == len){
+      		loop = 0;
+    	} else {
+      		loop++;
+    	}
+  	}, setting.timer360);
+}
+
+function colorAnimate (selColor) {
+	$("#chevron").hide();
+	$("#multiColor").empty();
+	clearInterval(animate360);
+	$("#imageViewer").attr('src', '').css({'display': 'inline-block'});
+
+	var data =  setting.model, selCar = setting.selModel, image, imgCount = data[selCar].colors.length, 
+		start = 113, end = 111, cropArea = (setting.imgWidth-(start+end));
+
+    $.each(data[selCar].colors, function (index, value) {
+      var key = Object.keys(value)[0], image = value[key], crop = cropArea/imgCount, imagePath, imagePos;
+      imagePath = image.replace(/{{frame}}/g, "031").replace(/{{width}}/g, setting.imgWidth);
+      imagePos = (setting.imgWidth-(crop*index)).toFixed(3)-start;
+
+      $("#multiColor").append('<div class="carAd" id="color'+index+'" style="width:'+crop+'px; background:url('+imagePath+') '+imagePos+'px 732px">'+key+'</div>');
+    });
+
+    /*colorTimer = setTimeout(function () {
+    	for(i=0; i<imgCount; i++){
+    		if (i != selColor) {
+    			$("#color"+i).hide();
+    		} else {
+    			$("#color"+selColor).css({"width": "100%", "background-position": "0px 0px"});
+    		}
+    	}
+    }, 2000);*/
+}
+
+function modelSlider (slide) {
+	var slideLen, type;
+	$('.ui.modal.welcome-modal').modal('hide');
+	$("#fly-in").hide();
+	$(".slider").css("display", 'inline-block');
+
+	if (setting.selModel === '') {
+		setting.scene = "modelSelection";
+		slideLen = setting.model.length;
+		type = "model";
+	}
+	else {
+		setting.scene = "colorSelection";
+		slideLen = setting.model[setting.selModel].colors.length;
+		type = "colors";
+	}
+
+	if (slide == 0) {
+		slider ((slideLen-1), slide, slide+1, setting.thumbFrame, type);
+	} else if (slide+1 == slideLen) {
+		slider (slide-1, slide, 0, setting.thumbFrame, type);
+	} else {
+		slider (slide-1, slide, slide+1, setting.thumbFrame, type);
+	}
+}
+
+function slider (left, main, right, frame, type) {
+	console.log(left, main, right, frame, type);
+	var data = setting.model;
+	$(".leftPos > img").addClass("animate").attr("src", imgSrc(left, frame, setting.thumbnail, type)).delay(500).queue(function(){
+    	$(this).removeClass("animate").dequeue();
+	}).data('myval', left);
+	$(".leftPos .headTitle").text(headTitle(left, type)).css('background', setting.badgeColor[rand(setting.badgeColor.length)]);
+	$(".leftPos .subHead").text(subHead(left, type));
+
+	$(".mainPos > img").attr("src", imgSrc(main, frame, setting.thumbnail, type)).data('myval', main);
+	$(".mainPos .headTitle").text(headTitle(main, type)).css('background', setting.badgeColor[rand(setting.badgeColor.length)]);
+	$(".mainPos .subHead").text(subHead(main, type));
+
+	$(".rightPos > img").addClass("animate").attr("src", imgSrc(right, frame, setting.thumbnail, type)).delay(500).queue(function(){
+    	$(this).removeClass("animate").dequeue();
+	}).data('myval', right);
+	$(".rightPos .headTitle").text(headTitle(right, type)).css('background', setting.badgeColor[rand(setting.badgeColor.length)]);
+	$(".rightPos .subHead").text(subHead(right, type));
+}
+
+function rand (range) {
+	//return Math.floor(Math.random() * range);
+	return 0;
+}
+
+function imgSrc (index, frame, width, type) {
+	var data = setting.model, imagePath;
+	if (type == "colors") {
+		$.each(setting.model[setting.selModel].colors[index], function (key, val) {
+			imagePath = val.replace(/{{frame}}/g, frame).replace(/{{width}}/g, width);
+		});
+	} else {
+		imagePath = data[index].imagepath.replace(/{{frame}}/g, frame).replace(/{{width}}/g, width);
+	}
+	return imagePath;
+}
+
+function headTitle (index, type) {
+	if (type == "model")
+		return setting.model[index].brand;
+	else
+		return setting.model[setting.selModel].model;
+}
+
+function subHead (index, type) {
+	var headContent;
+	if (type == "model") {
+		headContent = setting.model[index].model;
+	}
+	else {
+		$.each(setting.model[setting.selModel].colors[index], function (key, val) {
+			headContent = key;
+		});
+	}
+	return headContent;
+}
+
+init();
+
+</script>
+</body>
+</html>
